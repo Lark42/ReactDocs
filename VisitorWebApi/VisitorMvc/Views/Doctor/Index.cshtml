@@ -1,0 +1,41 @@
+﻿@model DoctorViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-6">Список врачей</h1>
+    <a href="/Doctor/Add/" class="btn btn-primary">Добавить врача</a>
+
+    <form action="/Doctor/" method="post" class="row row-cols-lg-auto g-3 my-2 align-items-center">
+        <div class="col-12">
+            <label>Специальность врача</label>
+        </div>
+        <div class="col-12">
+            <input type="text" name="Name" value="@Model.Filter.Name" class="form-control" autocomplete="off" />
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </div>
+    </form>
+
+    <table class ="table">
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Действие</th>
+        </tr>
+        @foreach (var doctor in Model.Doctors)
+        {
+            <tr>
+                <td>@doctor.Id</td>
+                <td>@doctor.Name</td>
+                <td>
+                    <a href="/Doctor/Edit/@doctor.Id"> Редактировать</a>
+                    <a href="/Doctor/Delete/@doctor.Id"> Удалить</a>
+                    </td>
+
+            </tr>
+        }
+    </table>
+</div>
